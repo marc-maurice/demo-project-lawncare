@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: demo_lawncare
+    database: DEMO_LAWNCARE
+    schema: RAW_SNOW
+    tables:
+      - name: stg_parquet
+        description: "Raw lawncare transaction data from parquet files."

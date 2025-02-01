@@ -1,0 +1,10 @@
+WITH service_metrics AS (
+    SELECT 
+        SERVICE_TYPE,
+        COUNT(TRANSACTION_ID) AS TOTAL_TRANSACTIONS,
+        SUM(PAYMENT_AMOUNT) AS TOTAL_REVENUE,
+        AVG(PAYMENT_AMOUNT) AS AVG_TRANSACTION_VALUE
+    FROM {{ ref('core_fact_transactions') }}
+    GROUP BY SERVICE_TYPE
+)
+SELECT * FROM service_metrics

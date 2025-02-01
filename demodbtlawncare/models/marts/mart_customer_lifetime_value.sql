@@ -1,0 +1,11 @@
+WITH customer_spend AS (
+    SELECT 
+        CUSTOMER_ID,
+        CUSTOMER_NAME,
+        CUSTOMER_SEGMENT,
+        SUM(PAYMENT_AMOUNT) AS TOTAL_SPENT,
+        COUNT(TRANSACTION_ID) AS TOTAL_TRANSACTIONS
+    FROM {{ ref('core_fact_transactions') }}
+    GROUP BY CUSTOMER_ID, CUSTOMER_NAME, CUSTOMER_SEGMENT
+)
+SELECT * FROM customer_spend
